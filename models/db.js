@@ -1,0 +1,8 @@
+const mongoose = require('mongoose')
+const connectDB = async ()=>{
+    try{
+        await mongoose.connect('mongodb+srv://common:common123@summer-project-mern.shx19.mongodb.net/<dbname>?retryWrites=true&w=majority')
+    }catch (err) {
+        console.log(err)
+    }
+}
