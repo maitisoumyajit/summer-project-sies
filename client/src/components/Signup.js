@@ -58,7 +58,12 @@ const Signup = ()=>{
     //RENDERING FORM
     return(
         <div className='signup-container'>
-            {showSignupForm()}
+            <div className='row vh-100'>
+                <div className='col-md-5 mx-auto mt-5'>
+                    {showSignupForm()}
+                </div>
+            </div>
+            
         </div>
     )
 }
