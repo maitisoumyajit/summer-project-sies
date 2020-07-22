@@ -3,6 +3,8 @@ import './Signup.css'
 
 
 const Signup = ()=>{
+        
+    
     const showSignupForm = ()=>(
         <form className="signup-form">
             {/* username*/ }
@@ -48,9 +50,9 @@ const Signup = ()=>{
                 </button>
              </div>
              {/*already have an account*/}
-                <p className='text-center text-white'>
-                    Have an account? <a href='/signin'>Log in</a>
-                </p>
+            <div className='text-center'>
+                <a className='btn btn-primary btn-block' href='/signin'>Have an Account? Sign in</a>
+            </div> 
         </form>
 
     );
