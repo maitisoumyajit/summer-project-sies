@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom'
 import './Signup.css'
-
+import isEmpty from 'validator/es/lib/isEmpty'
+import isEmail from 'validator/es/lib/isEmail'
+import equals from 'validator/es/lib/equals'
+import { showErrorMsg } from '../helpers/message'
 
 const Signup = ()=>{
     //Data from the template, using states
@@ -27,7 +30,28 @@ const Signup = ()=>{
         event.preventDefault()
             
         //client side validation, using validator
+        if(isEmpty(username) || isEmpty(email) || isEmpty(password) || isEmpty(password2)){
+            setFormData({
+                ...formData,
+                errorMsg: 'All fields are required'
+            })
+            
+        }   else if(!isEmail(email)){
+                setFormData({
+                    ...formData,
+                    errorMsg: 'Invalid Email'
+                })
+        
+        } else if (!equals(password,password2)){
+            setFormData({
+                ...formData,
+                errorMsg: 'Passwords do not match.'
+            })
 
+        } else{
+            //SUCCESS 
+
+        }
 
     }
     
@@ -73,14 +97,13 @@ const Signup = ()=>{
              </div>
              {/*Signup  button*/}
              <div className='form-group'>
-                <button type='submit' className='btn btn-primary btn-block'>
+                <button type='submit' className='btn btn-primary mr-2'>
                     Create Account
                 </button>
+                {/*already have an account*/}
+                <Link className='btn btn-primary' to='/signin'>Have an Account? Sign in</Link>
              </div>
-             {/*already have an account*/}
-            <div className='text-center'>
-                <Link className='btn btn-primary btn-block' to='/signin'>Have an Account? Sign in</Link>
-            </div> 
+             
         </form>
 
     );
@@ -90,7 +113,9 @@ const Signup = ()=>{
         <div className='signup-container '>
             <div className='row px-3 vh-100 '>
                 <div className='col-md-5 mx-auto mt-5'>
-                    {showSignupForm()} 
+                    {showSignupForm()}
+                    {errorMsg && showErrorMsg(errorMsg)} {/*if the error msg from the state is true then display the alert imported from bootstrap*/}
+                  
                     {/*<p>{JSON.stringify(formData)}</p>*/}
                 </div>
             </div>
