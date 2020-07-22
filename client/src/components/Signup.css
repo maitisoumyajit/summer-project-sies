@@ -4,5 +4,6 @@
     background-repeat: no-repeat;
     background-position: center;
     opacity: 1;
-    transition: opacity 1500ms ease-out;
+    background-blend-mode: darken; 
+    
 }
